@@ -1,4 +1,7 @@
-# OULAD Early Withdrawal Prediction
+# OULAD Withdrawal Prediction
+**Which students are likely to withdraw, and can we tell by day 21?**
+
+**Live dashboard:** [oulad-dropout-risk.streamlit.app](https://oulad-dropout-risk.streamlit.app)
 
 ## Business Problem
 Open University modules see a 31% withdrawal rate. Identifying at-risk students
@@ -60,7 +63,7 @@ These controls prevent both target leakage and student-level contamination.
 │   ├── ui.py                          # shared components, CSS, helper renderers
 │   ├── forms.py                       # live prediction input form
 │   └── charts.py                      # reusable chart functions
-├── streamlit_app.py                   # rubric-compliant single app with 5 top-level tabs
+├── streamlit_app.py                   # main Streamlit app with 5 top-level tabs
 ├── models/
 │   ├── best_model.joblib              # best sklearn model (generated after training)
 │   ├── best_model_calibrated.joblib   # isotonic-calibrated version
@@ -81,6 +84,17 @@ These controls prevent both target leakage and student-level contamination.
 | **Temporal holdout** | Train 2013, test 2014 — confirms generalisation to new cohorts |
 | **SHAP** | Global bar + beeswarm, dependence plots, local waterfall (TP/TN/FN), group contribution |
 | **Fairness** | Recall and FPR reported by module, IMD band, age band, and prior education |
+
+## Key Results
+| Metric | Value |
+|---|---|
+| **Best model** | Gradient Boosting (selected by CV PR-AUC) |
+| **Holdout PR-AUC** | 0.751 |
+| **Holdout Recall** | 67% (flags ~2 in 3 at-risk students) |
+| **Holdout Precision** | 66% (2 out of 3 flags are correct) |
+| **Temporal holdout PR-AUC** | 0.751 (2013 train, 2014 test) |
+
+Top models are tightly clustered (top 6 within 0.024 PR-AUC), suggesting that feature engineering — module-relative z-scores, zero-engagement flags, engagement trajectories — matters more than model choice.
 
 ## How to Run Locally
 ```bash

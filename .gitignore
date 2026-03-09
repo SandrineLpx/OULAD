@@ -11,6 +11,9 @@ build/
 Thumbs.db
 *.log
 .claude/
+agents.md
+CLAUDE.md
+docs/
 
 # Raw data too large for GitHub (433MB studentVle.csv)
 data/raw/
