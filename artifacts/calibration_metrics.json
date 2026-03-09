@@ -1,0 +1,7 @@
+{
+  "best_model": "gradient_boosting",
+  "brier_score_before_calibration": 0.15437017813095813,
+  "brier_score_after_calibration": 0.16837165385866934,
+  "pr_auc_before": 0.7511951179286056,
+  "pr_auc_after": 0.7181121076299568
+}

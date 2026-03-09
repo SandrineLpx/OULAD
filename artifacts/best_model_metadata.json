@@ -1,0 +1,59 @@
+{
+  "problem_type": "binary_classification",
+  "target_column": "withdrawn_flag",
+  "dataset": "oulad_modeling_table_clean.csv",
+  "business_use_case": "Early intervention for student retention using first-21-day signals.",
+  "leakage_controls": [
+    "Dropped id_student, code_presentation (identifiers)",
+    "Dropped has_unregistered_flag (target proxy)",
+    "Dropped 18 clicks_activity_* columns (sum to total_clicks, whole-course)",
+    "Dropped 9 other whole-course VLE aggregates",
+    "Dropped redundant r=1.00 feature groups",
+    "Used GroupShuffleSplit (id_student) to prevent student-level data leakage"
+  ],
+  "split_strategy": "GroupShuffleSplit(id_student, test_size=0.20)",
+  "cv_strategy": "StratifiedGroupKFold(n_splits=5, groups=id_student)",
+  "class_balance": {
+    "class_0_retained": 22437,
+    "class_1_withdrawn": 10156,
+    "withdrawal_rate": 0.3116006504464149
+  },
+  "best_model_name": "gradient_boosting",
+  "best_metric": "cv_pr_auc_mean",
+  "best_metric_value": 0.7377406631765941,
+  "holdout_pr_auc": 0.7511951179286056,
+  "holdout_recall": 0.6710997442455243,
+  "holdout_f1": 0.6663280853224988,
+  "threshold_max_f1": 0.51936668573961,
+  "threshold_prec70_max_recall": 0.5370446479763985,
+  "brier_score_calibrated": 0.16837165385866934,
+  "lightgbm_available": true,
+  "xgboost_available": false,
+  "holdout_report": {
+    "0": {
+      "precision": 0.856729055258467,
+      "recall": 0.8514171833480957,
+      "f1-score": 0.8540648600621946,
+      "support": 4516.0
+    },
+    "1": {
+      "precision": 0.6616238023197176,
+      "recall": 0.6710997442455243,
+      "f1-score": 0.6663280853224988,
+      "support": 1955.0
+    },
+    "accuracy": 0.7969401947148818,
+    "macro avg": {
+      "precision": 0.7591764287890923,
+      "recall": 0.7612584637968101,
+      "f1-score": 0.7601964726923467,
+      "support": 6471.0
+    },
+    "weighted avg": {
+      "precision": 0.7977844146317857,
+      "recall": 0.7969401947148818,
+      "f1-score": 0.797346362980429,
+      "support": 6471.0
+    }
+  }
+}

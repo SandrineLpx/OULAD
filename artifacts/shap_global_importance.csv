@@ -1,0 +1,102 @@
+feature,feature_label,mean_abs_shap
+num__weighted_avg_score_module_z,Weighted Avg Score Module Z,0.2936398544951538
+num__max_activity_day,Max Activity Day,0.23294208548294454
+num__first_21d_active_days_module_z,First 21D Active Days Module Z,0.19939665089557468
+num__studied_credits,Studied Credits,0.19164955346805587
+num__first_21d_clicks,First 21D Clicks,0.14174304190181983
+cat__highest_education_Lower Than A Level,Highest Education Lower Than A Level,0.08754774933880208
+num__tma_avg_score,Tma Avg Score,0.0864494670138306
+num__module_presentation_length,Module Presentation Length,0.08181733261901084
+num__date_registration,Date Registration,0.08032289768800567
+cat__code_module_CCC,Code Module Ccc,0.07731719456151327
+num__avg_submission_delay,Avg Submission Delay,0.07511969550795998
+num__first_21d_clicks_module_z,First 21D Clicks Module Z,0.06534209997292041
+num__weighted_avg_score,Weighted Avg Score,0.05458298210706745
+num__is_low_imd,Is Low Imd,0.042894538585596116
+num__pre_start_sites,Pre Start Sites,0.042551834300545946
+num__engagement_accel_14to21,Engagement Accel 14To21,0.040391960168353315
+cat__disability_N,Disability N,0.03757124225277279
+num__tma_avg_delay,Tma Avg Delay,0.036764117445340874
+cat__code_module_GGG,Code Module Ggg,0.03656445585448789
+num__first_21d_sites,First 21D Sites,0.03637228362402632
+num__active_day_growth_14to21,Active Day Growth 14To21,0.033513271612225864
+num__engagement_accel_7to14,Engagement Accel 7To14,0.032702281931815035
+num__score_per_active_day,Score Per Active Day,0.02799827319435312
+num__early_or_ontime_count,Early Or Ontime Count,0.026658809467775962
+num__zero_assessment,Zero Assessment,0.024770597643568894
+num__zero_engagement_21d,Zero Engagement 21D,0.023812423001849357
+cat__gender_F,Gender F,0.022183934005050233
+num__num_of_prev_attempts,Num Of Prev Attempts,0.021635040621808873
+num__pre_start_avg_clicks_per_student_site_day,Pre Start Avg Clicks Per Student Site Day,0.020909789373179846
+cat__code_module_DDD,Code Module Ddd,0.019941132070504464
+num__first_7d_avg_clicks_per_student_site_day,First 7D Avg Clicks Per Student Site Day,0.01872135066422479
+num__first_7d_clicks,First 7D Clicks,0.01863787021890589
+cat__region_Scotland,Region Scotland,0.017471306231165124
+num__first_14d_avg_clicks_per_student_site_day,First 14D Avg Clicks Per Student Site Day,0.01482493115641474
+num__min_activity_day,Min Activity Day,0.014294780091490824
+num__first_assessment_day,First Assessment Day,0.013872384460271175
+num__first_21d_avg_clicks_per_student_site_day,First 21D Avg Clicks Per Student Site Day,0.012098840163652667
+cat__highest_education_A Level or Equivalent,Highest Education A Level Or Equivalent,0.012050144725441385
+cat__region_Wales,Region Wales,0.01156623775044522
+num__submission_rate,Submission Rate,0.011204966781859099
+num__engagement_intensity_21d,Engagement Intensity 21D,0.01114795453497616
+num__assessment_density_21d,Assessment Density 21D,0.010694227202955282
+cat__age_band_0-35,Age Band 0-35,0.010551252854254647
+cat__code_module_BBB,Code Module Bbb,0.010207251165039
+num__first_14d_sites,First 14D Sites,0.010003110452347091
+cat__code_module_AAA,Code Module Aaa,0.00947088545520815
+num__active_day_growth_7to14,Active Day Growth 7To14,0.009457629096126453
+cat__region_East Midlands Region,Region East Midlands Region,0.009248100176274969
+num__pre_start_clicks,Pre Start Clicks,0.008915710721827435
+cat__imd_band_90-100%,Imd Band 90-100%,0.0079303129675992
+num__first_7d_sites,First 7D Sites,0.007788939408568403
+num__first_14d_clicks,First 14D Clicks,0.007381193589003981
+cat__disability_Y,Disability Y,0.007262457963391089
+num__registration_gap_abs,Registration Gap Abs,0.007255554576465343
+cat__code_module_FFF,Code Module Fff,0.0069612721568150585
+cat__age_band_35-55,Age Band 35-55,0.006630446764515852
+num__first_14d_active_days,First 14D Active Days,0.005961296856008087
+num__cma_avg_delay,Cma Avg Delay,0.005787745824453182
+num__tma_count,Tma Count,0.005756189455579616
+cat__code_module_EEE,Code Module Eee,0.005725638949180024
+cat__imd_band_50-60%,Imd Band 50-60%,0.004945526839828964
+num__first_21d_active_days,First 21D Active Days,0.004719810878550629
+num__is_feb_start,Is Feb Start,0.0040010007057233775
+num__pre_start_active_days,Pre Start Active Days,0.003963078647218317
+num__cma_avg_score,Cma Avg Score,0.003158250182602548
+cat__imd_band_10-20,Imd Band 10-20,0.0030184332430460248
+cat__imd_band_70-80%,Imd Band 70-80%,0.002715581719256517
+cat__region_West Midlands Region,Region West Midlands Region,0.0023062048833175242
+cat__highest_education_No Formal quals,Highest Education No Formal Quals,0.002294905300866838
+cat__imd_band_20-30%,Imd Band 20-30%,0.0021190519604314677
+cat__region_Ireland,Region Ireland,0.0021113513976077744
+cat__gender_M,Gender M,0.0019930800940551044
+num__first_7d_active_days,First 7D Active Days,0.0016017944631402316
+cat__imd_band_40-50%,Imd Band 40-50%,0.0013311035007597342
+num__cma_count,Cma Count,0.0013019412637694508
+cat__region_London Region,Region London Region,0.0011009122979573878
+cat__highest_education_HE Qualification,Highest Education He Qualification,0.0010903409414577464
+cat__region_East Anglian Region,Region East Anglian Region,0.0010701772593704295
+cat__imd_band_0-10%,Imd Band 0-10%,0.0010678951932443664
+cat__region_South East Region,Region South East Region,0.0010215920140287235
+cat__region_South Region,Region South Region,0.0008836016268608146
+cat__region_Yorkshire Region,Region Yorkshire Region,0.0008633556397844832
+cat__highest_education_Post Graduate Qualification,Highest Education Post Graduate Qualification,0.0007682016758828817
+cat__imd_band_30-40%,Imd Band 30-40%,0.0006214849127752924
+cat__region_South West Region,Region South West Region,0.0005970781714958649
+cat__imd_band_60-70%,Imd Band 60-70%,0.000381424975582287
+cat__imd_band_80-90%,Imd Band 80-90%,0.00029140678903831127
+cat__region_North Region,Region North Region,0.00013924105396321
+cat__region_North Western Region,Region North Western Region,0.00011249563901716244
+num__late_submission_count,Late Submission Count,0.0
+num__max_submission_delay,Max Submission Delay,0.0
+num__tma_submitted,Tma Submitted,0.0
+num__late_submission_rate,Late Submission Rate,0.0
+num__tma_submission_rate,Tma Submission Rate,0.0
+num__tma_late_count,Tma Late Count,0.0
+num__cma_submission_rate,Cma Submission Rate,0.0
+num__cma_submitted,Cma Submitted,0.0
+num__late_submission_rate_safe,Late Submission Rate Safe,0.0
+num__cma_late_count,Cma Late Count,0.0
+num__zero_engagement_7d,Zero Engagement 7D,0.0
+cat__age_band_55<=,Age Band 55<=,0.0

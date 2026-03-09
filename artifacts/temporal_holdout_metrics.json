@@ -1,0 +1,17 @@
+{
+  "train_on": "2013 presentations",
+  "test_on": "2014 presentations",
+  "train_rows": 13529,
+  "test_rows": 19064,
+  "train_withdrawal_rate": 0.2747431443565674,
+  "test_withdrawal_rate": 0.3377570289550986,
+  "accuracy": 0.8007763323541754,
+  "precision": 0.6964737390269305,
+  "recall": 0.7269762385463582,
+  "f1": 0.7113981762917934,
+  "roc_auc": 0.868530707830839,
+  "pr_auc": 0.8056353144891477,
+  "brier": 0.14846445675041905,
+  "random_split_pr_auc": 0.7511951179286056,
+  "note": "Temporal PR-AUC higher than random-split PR-AUC. Part of the gain is mechanical: the 2014 test cohort has a higher withdrawal rate (~34% vs ~31%), which raises the PR-AUC baseline by ~0.026. Genuine skill gain (prevalence-adjusted) is approximately +0.03. Higher temporal performance is good news -- the model generalises to the 2014 cohort."
+}

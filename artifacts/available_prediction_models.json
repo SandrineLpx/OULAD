@@ -1,0 +1,36 @@
+{
+  "models": [
+    {
+      "model": "baseline_dummy",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\baseline_dummy.joblib"
+    },
+    {
+      "model": "logistic_regression",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\logistic_regression.joblib"
+    },
+    {
+      "model": "lasso",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\lasso.joblib"
+    },
+    {
+      "model": "ridge",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\ridge.joblib"
+    },
+    {
+      "model": "decision_tree",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\decision_tree.joblib"
+    },
+    {
+      "model": "random_forest",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\random_forest.joblib"
+    },
+    {
+      "model": "gradient_boosting",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\gradient_boosting.joblib"
+    },
+    {
+      "model": "lightgbm",
+      "path": "C:\\Users\\sandr\\OneDrive\\11_MSIS\\522B - ML\\OULAD\\models\\candidates\\lightgbm.joblib"
+    }
+  ]
+}

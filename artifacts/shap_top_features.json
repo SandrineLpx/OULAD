@@ -1,0 +1,15 @@
+{
+  "top_features": [
+    "num__weighted_avg_score_module_z",
+    "num__max_activity_day",
+    "num__first_21d_active_days_module_z",
+    "num__studied_credits",
+    "num__first_21d_clicks",
+    "cat__highest_education_Lower Than A Level",
+    "num__tma_avg_score",
+    "num__module_presentation_length",
+    "num__date_registration",
+    "cat__code_module_CCC"
+  ],
+  "note": "Ranked by mean absolute SHAP value on holdout sample."
+}
