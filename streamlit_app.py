@@ -179,7 +179,7 @@ def _show_missing_artifacts_once(tab_name: str, missing: set[str]) -> None:
 
 
 def main() -> None:
-    configure_page("OULAD — Which Students Are Likely to Withdraw, and Can We Tell by Day 21?")
+    configure_page("OULAD — Which students are likely to withdraw, and can we tell by day 21?")
     data = load_common_artifacts()
     metadata = data["metadata"]
     profile = data["profile"]

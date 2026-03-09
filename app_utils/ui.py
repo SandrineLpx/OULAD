@@ -597,7 +597,7 @@ def render_sidebar_status(
 
 
 def render_header(profile: dict, metadata: dict) -> None:
-    st.title("Which Students Are Likely to Withdraw, and Can We Tell by Day 21?")
+    st.title("Which students are likely to withdraw, and can we tell by day 21?")
     n = profile.get("n_rows", 0)
     rate = profile.get("withdraw_rate", 0)
     st.caption(
