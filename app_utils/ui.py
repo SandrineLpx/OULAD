@@ -564,6 +564,12 @@ def render_sidebar_status(
         ]
         st.sidebar.caption("  \n".join(f"- {n}" for n in names))
 
+    # ── Source code ──
+    st.sidebar.markdown("---")
+    st.sidebar.markdown(
+        "[GitHub repository](https://github.com/SandrineLpx/OULAD)"
+    )
+
 
 def render_header(profile: dict, metadata: dict) -> None:
     st.title("OULAD Early Withdrawal Analytics")
