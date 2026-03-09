@@ -61,8 +61,7 @@ These controls prevent both target leakage and student-level contamination.
 │   ├── constants.py                   # display names, labels, chart captions
 │   ├── data.py                        # artifact loaders for Streamlit
 │   ├── ui.py                          # shared components, CSS, helper renderers
-│   ├── forms.py                       # live prediction input form
-│   └── charts.py                      # reusable chart functions
+│   └── forms.py                       # live prediction input form
 ├── streamlit_app.py                   # main Streamlit app with 5 top-level tabs
 ├── models/
 │   ├── best_model.joblib              # best sklearn model (generated after training)

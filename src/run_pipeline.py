@@ -23,6 +23,9 @@ import argparse
 import sys
 import time
 
+import matplotlib
+matplotlib.use("Agg")  # non-interactive backend — avoids tkinter crashes
+
 
 def run_all(skip_nn: bool = False) -> None:
     t0 = time.time()
