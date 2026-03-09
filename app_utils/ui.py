@@ -37,6 +37,30 @@ section[data-testid="stSidebar"] {
 }
 section[data-testid="stSidebar"] .block-container { padding-top: 1.0rem; }
 
+/* Make columns equal-height so side-by-side cards match */
+div[data-testid="stHorizontalBlock"] {
+    align-items: stretch !important;
+}
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] {
+    display: flex !important;
+    flex-direction: column !important;
+}
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] > div > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] > div > div > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
 /* Cards */
 .dashboard-card {
     background: #FFFFFF;
@@ -45,6 +69,8 @@ section[data-testid="stSidebar"] .block-container { padding-top: 1.0rem; }
     padding: 1.0rem 1.1rem;
     margin-bottom: 0.85rem;
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    flex: 1 !important;
+    box-sizing: border-box;
 }
 
 /* Section containers for charts and groups */
@@ -359,9 +385,10 @@ def render_metric_card(label: str, value: str) -> None:
     )
 
 
-def render_card(markdown_text: str) -> None:
+def render_card(markdown_text: str, class_name: str = "") -> None:
+    extra_class = f" {class_name.strip()}" if class_name.strip() else ""
     st.markdown(
-        f'<div class="dashboard-card">{markdown_text}</div>',
+        f'<div class="dashboard-card{extra_class}">{markdown_text}</div>',
         unsafe_allow_html=True,
     )
 
@@ -516,6 +543,9 @@ def render_sidebar_status(
     st.sidebar.markdown(
         "[OULAD — Open University Learning Analytics](https://archive.ics.uci.edu/dataset/349/open+university+learning+analytics+dataset)"
     )
+    st.sidebar.markdown(
+        "[GitHub repository](https://github.com/SandrineLpx/OULAD)"
+    )
     prof = profile or {}
     n_rows = prof.get("n_rows", 0)
     n_cols = prof.get("n_columns", 0)
@@ -564,15 +594,10 @@ def render_sidebar_status(
         ]
         st.sidebar.caption("  \n".join(f"- {n}" for n in names))
 
-    # ── Source code ──
-    st.sidebar.markdown("---")
-    st.sidebar.markdown(
-        "[GitHub repository](https://github.com/SandrineLpx/OULAD)"
-    )
 
 
 def render_header(profile: dict, metadata: dict) -> None:
-    st.title("OULAD Early Withdrawal Analytics")
+    st.title("Which Students Are Likely to Withdraw, and Can We Tell by Day 21?")
     n = profile.get("n_rows", 0)
     rate = profile.get("withdraw_rate", 0)
     st.caption(

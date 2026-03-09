@@ -225,7 +225,9 @@ def render_input_form(schema: dict[str, Any], n_cols: int = 2) -> dict[str, Any]
             late_default_ratio = min(max(late_default_ratio, 0.0), 1.0)
 
             eng_meta = schema.get("engagement_intensity_21d", {})
-            eng_min, eng_max = 0.0, 200.0
+            eng_min = float(eng_meta.get("min", 0.0) or 0.0)
+            eng_max = float(eng_meta.get("max", 70.0) or 70.0)
+            eng_max = round(eng_max, 0)  # clean ceiling
             eng_default = float(eng_meta.get("default", eng_meta.get("median", 10.0)) or 10.0)
             eng_default = min(max(eng_default, eng_min), eng_max)
 
@@ -298,13 +300,14 @@ def render_input_form(schema: dict[str, Any], n_cols: int = 2) -> dict[str, Any]
                                 min_value=0.0,
                                 max_value=1.0,
                                 value=float(st.session_state[k_late_ratio]),
-                                step=0.01,
+                                step=0.05,
                                 key=k_late_ratio,
-                                help="Fraction between 0 and 1.",
+                                format="%.2f",
+                                help="Fraction of submissions submitted late (0 = none, 1 = all).",
                             )
                         )
                         values["late_submission_rate"] = late_ratio
-                        _muted_line(f"Current value: {late_ratio:.0%} (stored as {late_ratio:.2f}).")
+                        _muted_line(f"Current value: {late_ratio:.0%} late.")
                     handled_features.add("late_submission_rate")
 
             # ---------- Group 3: Engagement ----------
@@ -319,10 +322,10 @@ def render_input_form(schema: dict[str, Any], n_cols: int = 2) -> dict[str, Any]
                         min_value=float(eng_min),
                         max_value=float(eng_max),
                         value=float(round(float(st.session_state[k_eng]), 1)),
-                        step=0.1,
+                        step=1.0,
                         format="%.1f",
                         key=k_eng,
-                        help="Clicks per active day (computed).",
+                        help="Total clicks / active days in first 21 days.",
                         )
                     )
                     values["engagement_intensity_21d"] = float(eng_val)

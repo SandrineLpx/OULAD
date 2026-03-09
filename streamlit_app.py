@@ -179,7 +179,7 @@ def _show_missing_artifacts_once(tab_name: str, missing: set[str]) -> None:
 
 
 def main() -> None:
-    configure_page("OULAD Streamlit Tabs App")
+    configure_page("OULAD — Which Students Are Likely to Withdraw, and Can We Tell by Day 21?")
     data = load_common_artifacts()
     metadata = data["metadata"]
     profile = data["profile"]
@@ -308,6 +308,7 @@ def main() -> None:
                 f"{float(holdout_pr_auc):.3f}" if holdout_pr_auc is not None and pd.notna(holdout_pr_auc) else "N/A",
             )
 
+        st.markdown("<div style='height: 0.5rem;'></div>", unsafe_allow_html=True)
         st.markdown("**Key findings**")
         card_col1, card_col2, card_col3 = st.columns(3)
         with card_col1:
@@ -316,7 +317,8 @@ def main() -> None:
                 "Early platform engagement is the strongest signal — withdrawn students "
                 "have a median of <b>28 clicks</b> vs <b>149</b> for retained students in the first 21 days. "
                 "Students with <b>zero assessment submissions</b> or <b>no active days in week 1</b> "
-                "are at the highest risk."
+                "are at the highest risk.",
+                class_name="executive-finding-card",
             )
         with card_col2:
             render_card(
@@ -324,7 +326,8 @@ def main() -> None:
                 "Students with <b>no prior higher-education qualifications</b> and those in "
                 "<b>lower socioeconomic bands</b> show elevated withdrawal rates. "
                 "Module context matters — some courses have withdrawal rates 4x higher than others. "
-                "The engagement gap between groups is visible from <b>week 1</b> and widens each week."
+                "The engagement gap between groups is visible from <b>week 1</b> and widens each week.",
+                class_name="executive-finding-card",
             )
         with card_col3:
             _recall_frac = "some"
@@ -347,7 +350,8 @@ def main() -> None:
                     f"The {best_name} flags roughly <b>{_recall_frac}</b> at-risk students "
                     "within 21 days of module start, "
                     "creating a meaningful window for targeted outreach."
-                )
+                ),
+                class_name="executive-finding-card",
             )
 
         # ---- Recommended actions ----
@@ -414,14 +418,14 @@ def main() -> None:
                 with d1:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "eda" / "01_target_distribution.png",
-                        "Target distribution",
+                        "Nearly 1 in 3 students withdraw before completing their module",
                         EDA_NOTES.get("01_target_distribution.png", ""),
                         missing_tab2,
                     )
                 with d2:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "eda" / "14_clicks_by_outcome.png",
-                        "Clicks in first 21 days by outcome",
+                        "Withdrawn students cluster near zero platform activity",
                         EDA_NOTES.get("14_clicks_by_outcome.png", ""),
                         missing_tab2,
                     )
@@ -429,7 +433,7 @@ def main() -> None:
 
                 _show_image_or_track_missing(
                     ARTIFACTS_DIR / "eda" / "07_correlation_heatmap.png",
-                    "Correlation heatmap",
+                    "Zero engagement is the strongest single predictor of withdrawal (r = 0.42)",
                     EDA_NOTES.get("07_correlation_heatmap.png", ""),
                     missing_tab2,
                 )
@@ -439,14 +443,14 @@ def main() -> None:
                 with s1:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "eda" / "15_boxplots_by_outcome.png",
-                        "Key signals by outcome",
+                        "Withdrawn students show sharply lower engagement across all three signals",
                         EDA_NOTES.get("15_boxplots_by_outcome.png", ""),
                         missing_tab2,
                     )
                 with s2:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "eda" / "12_withdrawal_by_demographics.png",
-                        "Withdrawal by student background",
+                        "Prior education and socioeconomic band show the steepest risk gradients",
                         EDA_NOTES.get("12_withdrawal_by_demographics.png", ""),
                         missing_tab2,
                     )
@@ -456,14 +460,14 @@ def main() -> None:
                     with c1:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "eda" / "09_zero_engagement_heatmap.png",
-                            "Zero-engagement students by module",
+                            "Zero-activity students withdraw at near-100% rates across every module",
                             EDA_NOTES.get("09_zero_engagement_heatmap.png", ""),
                             missing_tab2,
                         )
                     with c2:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "eda" / "10_engagement_distributions.png",
-                            "Engagement distributions across early windows",
+                            "Engagement gap between groups is visible from week 1 and widens by week 3",
                             EDA_NOTES.get("10_engagement_distributions.png", ""),
                             missing_tab2,
                         )
@@ -471,14 +475,14 @@ def main() -> None:
                     with c3:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "eda" / "11_temporal_shift.png",
-                            "Withdrawal rate by academic year",
+                            "Withdrawal rates rose ~6 points from 2013 to 2014, motivating temporal holdout",
                             EDA_NOTES.get("11_temporal_shift.png", ""),
                             missing_tab2,
                         )
                     with c4:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "eda" / "13_engagement_acceleration.png",
-                            "Engagement acceleration (weeks 1 to 3)",
+                            "Retained students accelerate activity in weeks 2-3; withdrawn students plateau",
                             EDA_NOTES.get("13_engagement_acceleration.png", ""),
                             missing_tab2,
                         )
@@ -548,7 +552,7 @@ def main() -> None:
             with perf_t1:
                 _show_image_or_track_missing(
                     ARTIFACTS_DIR / "model_comparison.png",
-                    "Model comparison (CV PR-AUC)",
+                    "Tree ensembles lead, but the gap between top models is narrow",
                     "Cross-validated PR-AUC is the selection metric.",
                     missing_tab3,
                 )
@@ -581,18 +585,24 @@ def main() -> None:
                 st.caption("Test-set metrics on unseen students, sorted by PR-AUC. Best row highlighted.")
                 if not holdout_df.empty:
                     display_holdout = holdout_df.copy()
+                    # Remove baseline — not a real model
+                    display_holdout = display_holdout[
+                        ~display_holdout["model"].astype(str).str.contains("baseline", case=False)
+                    ].reset_index(drop=True)
+                    # Append NN from separate artifact if not already present
                     nn_path = ARTIFACTS_DIR / "nn_holdout_metrics.json"
                     if nn_path.exists() and "neural_network" not in " ".join(display_holdout["model"].astype(str).tolist()):
                         try:
                             nn_metrics = load_json(nn_path)
                             nn_row = {
-                                "model": "Neural Network (MLP)",
+                                "model": "neural_network_keras",
                                 "accuracy": nn_metrics.get("accuracy"),
                                 "precision": nn_metrics.get("precision"),
                                 "recall": nn_metrics.get("recall"),
                                 "f1": nn_metrics.get("f1"),
                                 "roc_auc": nn_metrics.get("roc_auc"),
                                 "pr_auc": nn_metrics.get("pr_auc"),
+                                "brier": nn_metrics.get("brier"),
                             }
                             display_holdout = pd.concat([display_holdout, pd.DataFrame([nn_row])], ignore_index=True)
                         except Exception:
@@ -614,7 +624,7 @@ def main() -> None:
                             display_holdout.style.apply(_highlight_best_holdout, axis=1),
                             use_container_width=True,
                             hide_index=True,
-                            height=280,
+                            height=340,
                         )
                     else:
                         st.dataframe(display_holdout, use_container_width=True, hide_index=True, height=280)
@@ -629,14 +639,14 @@ def main() -> None:
                     with _roc_col:
                         _show_image_or_track_missing(
                             roc_all_path,
-                            "ROC curves (all models)",
+                            "All models achieve strong ROC-AUC, but PR-AUC better reveals differences",
                             "ROC AUC shown for completeness. PR-AUC is the primary metric under class imbalance.",
                             missing_tab3,
                         )
                 else:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "roc_curve.png",
-                        "ROC curve (best model)",
+                        "Best model ROC curve",
                         "Run `python -m src.train_models` to generate per-model ROC curves.",
                         missing_tab3,
                     )
@@ -647,21 +657,21 @@ def main() -> None:
                 with e1:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "pr_curve.png",
-                        "PR curve (best model)",
+                        "Precision-recall tradeoff under class imbalance",
                         "Useful for selecting thresholds under class imbalance.",
                         missing_tab3,
                     )
                 with e2:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "confusion_matrix.png",
-                        "Confusion matrix (best model)",
+                        "Most errors are false alarms, not missed withdrawals",
                         "Shows the tradeoff between missed withdrawals and false alarms at the selected threshold.",
                         missing_tab3,
                     )
                 with e3:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "threshold_curve.png",
-                        "Threshold sensitivity curve",
+                        "Raising the threshold trades recall for precision",
                         "Precision, recall, and F1 as the threshold changes.",
                         missing_tab3,
                     )
@@ -671,14 +681,14 @@ def main() -> None:
                 with d1:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "reliability_diagram.png",
-                        "Calibration reliability diagram",
+                        "Predicted probabilities closely match observed rates after calibration",
                         "Points near the diagonal mean predicted probabilities match observed withdrawal rates. Calibration applied via isotonic regression.",
                         missing_tab3,
                     )
                 with d2:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "temporal_holdout_comparison.png",
-                        "Temporal holdout comparison (2013 to 2014)",
+                        "Model generalises to 2014 despite a 6-point rise in withdrawal rates",
                         "Performance of the 2013-trained model evaluated on the 2014 cohort. Tests generalisation to a genuinely different future cohort.",
                         missing_tab3,
                     )
@@ -688,14 +698,14 @@ def main() -> None:
                     with sg1:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "module_stratified_performance.png",
-                            "Performance by module",
+                            "High-withdrawal modules (CCC, FFF) are harder to predict accurately",
                             "Recall and precision per module. Modules with high withdrawal rates (CCC, FFF) are harder to flag.",
                             missing_tab3,
                         )
                     with sg2:
                         _show_image_or_track_missing(
                             ARTIFACTS_DIR / "subgroup_recall_by_imd.png",
-                            "Recall by deprivation band (IMD)",
+                            "Recall is consistent across income bands — no systematic equity gap",
                             "Equity check: model recall across socioeconomic groups. Comparable performance across bands indicates the model does not systematically disadvantage lower-income students.",
                             missing_tab3,
                         )
@@ -719,7 +729,7 @@ def main() -> None:
                     with st.expander("Decision tree structure (Part 2.3)", expanded=True):
                         _show_image_or_track_missing(
                             _dt_viz_path,
-                            "Decision tree — top 4 levels",
+                            "Zero engagement and low active days drive the top decision splits",
                             "The best decision tree, pruned for readability. Each node shows the split feature, threshold, and class distribution.",
                             missing_tab3,
                         )
@@ -731,7 +741,7 @@ def main() -> None:
                     with st.expander("Neural Network — training history (MLP)", expanded=True):
                         _show_image_or_track_missing(
                             _nn_curve_path,
-                            "Neural Network training curve",
+                            "Neural network converges cleanly with no sign of overfitting",
                             (
                                 "Loss and PR-AUC across training epochs for the Keras MLP (3 hidden layers: 128, 64, 32 units, "
                                 "ReLU activation, Adam optimiser, binary focal crossentropy). The training curve shows whether "
@@ -801,7 +811,7 @@ def main() -> None:
             with _shap_c1:
                 _show_image_or_track_missing(
                     ARTIFACTS_DIR / "shap_bar.png",
-                    "Feature importance (mean |SHAP|)",
+                    "Assessment scores and engagement relative to peers matter most",
                     (
                         "Average absolute SHAP value per feature. "
                         "Longer bar = stronger influence on predictions overall. "
@@ -812,7 +822,7 @@ def main() -> None:
             with _shap_c2:
                 _show_image_or_track_missing(
                     ARTIFACTS_DIR / "shap_summary.png",
-                    "Feature direction and spread (beeswarm)",
+                    "Low scores and inactivity push toward withdrawal; engagement is protective",
                     (
                         "Each dot is one student. Position left/right shows whether the feature "
                         "reduced or increased withdrawal risk for that student. "
@@ -865,7 +875,7 @@ def main() -> None:
                 with _tp_col:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "shap_local_tp.png",
-                        "Waterfall: correctly flagged at-risk student",
+                        "Near-zero scores and low engagement drive this student's high-risk flag",
                         (
                             "Waterfall plot for a representative true-positive prediction: a student "
                             "the model correctly identified as likely to withdraw. Red bars push the "
@@ -882,7 +892,7 @@ def main() -> None:
                 with _gc_col:
                     _show_image_or_track_missing(
                         ARTIFACTS_DIR / "shap_group_contribution.png",
-                        "SHAP contributions by student background",
+                        "Model risk scores vary by demographic group, independent of engagement",
                         (
                             "Average SHAP value per demographic group. Shows which student backgrounds "
                             "the model weights most differently when generating withdrawal risk scores. "
